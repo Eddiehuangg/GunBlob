@@ -1,9 +1,0 @@
-
-verticalSpeed += grav;
-if(place_meeting(x,y+1,wallObj)){
-	verticalSpeed = -6;
-	//y = y + verticalSpeed;
-}
-y += verticalSpeed
-
-if(place_meeting(x,y+1,playerObject)) game_end();
