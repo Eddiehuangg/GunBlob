@@ -1,0 +1,37 @@
+
+keyLeft = keyboard_check(vk_left);
+keyRight = keyboard_check(vk_right);
+keyJump = keyboard_check_pressed(vk_space);
+
+//calcuting movement
+var move = keyRight - keyLeft;
+horizontalSpeed = move * walkSpeed;
+verticalSpeed += grav;
+
+if(place_meeting(x,y+1,wallObj)) jumpCounter = 0;
+
+if(/*place_meeting(x,y+1,wallObj))*/ (keyJump) && (jumpCounter <2)){
+	verticalSpeed = -6;
+	jumpCounter ++;
+}
+
+//horizontal collision
+if (place_meeting(x+horizontalSpeed,y,wallObj)){
+	while(!place_meeting(x+sign(horizontalSpeed),y,wallObj)){
+		x += sign(horizontalSpeed);
+	}
+	horizontalSpeed = 0;
+	
+}
+x = x + horizontalSpeed;
+
+
+//vertical Collision
+if (place_meeting(x,y+verticalSpeed,wallObj)){
+	while(!place_meeting(x,y+sign(verticalSpeed),wallObj)){
+		y += sign(verticalSpeed);
+	}
+	verticalSpeed = 0;
+	
+}
+y = y + verticalSpeed;
